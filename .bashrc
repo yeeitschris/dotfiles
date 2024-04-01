@@ -41,7 +41,7 @@ alias repos="cd $REPOS"
 alias c="clear"
 
 # ls
-alias ls="ls -a --color=auto"
+alias ls="ls --color=auto"
 alias ll="ls -la"
 alias la="ls -lathr"
 
