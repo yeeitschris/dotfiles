@@ -55,6 +55,7 @@ alias e='exit'
 # git
 alias gp='git pull'
 alias gs='git status'
+alias gc='git checkout'
 
 # ricing
 alias eb='v ~/.bashrc'
