@@ -62,6 +62,9 @@ alias eb='v ~/.bashrc'
 alias ev='cd ~/.config/nvim/ && v init.lua'
 alias sbr='source ~/.bashrc'
 
+# Add homebrew to PATH
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # Only needed for npm install on WSL
 #export NVM_DIR="$HOME/.config/nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
@@ -105,4 +108,3 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
