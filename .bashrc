@@ -10,15 +10,15 @@ set -o vi
 
 # ~~~~~~~~~~ Environment Variables ~~~~~~~~~~
 # neovim
-export VISUAL=nvim
-export EDITOR=nvim
+# export VISUAL=nvim
+# export EDITOR=nvim
 
 # browser
 export BROWSER="firefox"
 
 # directories
 export XDG_CONFIG_HOME="$HOME/.config"
-export REPOS="$HOME/Repos"
+export REPOS="$HOME/repos"
 export GITUSER="yeeitschris"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
@@ -31,7 +31,7 @@ export SAVEHIST=25000
 export HISTCONTROL=ignorespace
 
 # ~~~~~~~~~~ Aliases ~~~~~~~~~~
-alias v=nvim
+# alias v=nvim
 
 # cd
 alias ..="cd .."
@@ -55,7 +55,6 @@ alias e='exit'
 # git
 alias gp='git pull'
 alias gs='git status'
-alias gc='git checkout'
 
 # ricing
 alias eb='v ~/.bashrc'
@@ -66,9 +65,9 @@ alias sbr='source ~/.bashrc'
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Only needed for npm install on WSL
-#export NVM_DIR="$HOME/.config/nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.config/nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # ~~~~~~~~~~ Vanilla bashrc settings ~~~~~~~~~~
 # set a fancy prompt (non-color, unless we know we "want" color)
