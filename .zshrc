@@ -40,6 +40,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+# ---------- Claude from root ---------
+alias notes=`cd ~/Notes/Obsidian/yeeitsvault && claude`
+
 # ---------- Starship ----------
 eval "$(starship init zsh)"
 
