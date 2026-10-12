@@ -9,9 +9,10 @@
 set -o vi
 
 # ~~~~~~~~~~ Environment Variables ~~~~~~~~~~
-# neovim
-# export VISUAL=nvim
-# export EDITOR=nvim
+# editor
+export EDITOR="vim"
+export VISUAL="vim"
+export PAGER="less"
 
 # browser
 export BROWSER="firefox"
@@ -26,24 +27,32 @@ export SCRIPTS="$DOTFILES/scripts"
 
 # ~~~~~~~~~~ History ~~~~~~~~~~
 export HISTFILE=~/.histfile
-export HISTSIZE=25000
-export SAVEHIST=25000
-export HISTCONTROL=ignorespace
+export HISTSIZE=50000
+export HISTFILESIZE=50000
+export HISTCONTROL=ignoreboth   # ignore dups + commands starting with a space
+export HISTTIMEFORMAT="%F %T "  # timestamps, like zsh EXTENDED_HISTORY
+shopt -s histappend
+# write + reload history every prompt so sessions share it (zsh SHARE_HISTORY)
+PROMPT_COMMAND="history -a; history -n${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 # ~~~~~~~~~~ Aliases ~~~~~~~~~~
 # alias v=nvim
 
 # cd
 alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 alias scripts="cd $SCRIPTS"
 alias dot="cd $GHREPOS/dotfiles"
 alias repos="cd $REPOS"
 alias c="clear"
+alias cl="clear"
 
 # ls
 alias ls="ls --color=auto"
-alias ll="ls -la"
-alias la="ls -lathr"
+alias ll="ls -lah"
+alias la="ls -A"
+alias l="ls -CF"
 
 # finds all files recursively and sorts by last modification, ignore hidden files
 alias last='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
@@ -53,8 +62,14 @@ alias t='tmux'
 alias e='exit'
 
 # git
-alias gp='git pull'
 alias gs='git status'
+alias ga='git add'
+alias gc='git checkout'
+alias gp='git push'
+alias gb='git branch'
+
+# claude from root
+alias notes='cd ~/Notes/Obsidian/yeeitsvault && claude'
 
 # ricing
 alias eb='v ~/.bashrc'
@@ -64,13 +79,12 @@ alias sbr='source ~/.bashrc'
 # Add homebrew to PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Only needed for npm install on WSL
-# export NVM_DIR="$HOME/.config/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# ~~~~~~~~~~ Completion ~~~~~~~~~~
+if ! shopt -oq posix && [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+fi
 
 # ~~~~~~~~~~ Vanilla bashrc settings ~~~~~~~~~~
-# set a fancy prompt (non-color, unless we know we "want" color)
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -107,3 +121,9 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+# ~~~~~~~~~~ Machine-local overrides (not tracked) ~~~~~~~~~~
+[ -f ~/.bashrc.local ] && . ~/.bashrc.local
+
+# ~~~~~~~~~~ Starship (must be last; overrides PS1 above) ~~~~~~~~~~
+command -v starship >/dev/null && eval "$(starship init bash)"
